@@ -8,53 +8,54 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <!-- GSAP - Premium Animation Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 <body>
 
-  <!-- LOADER -->
+  <!-- ===== LOADER ===== -->
   <div id="loader">
-    <div class="loader-inner">
-      <div class="loader-top">
-        <span>INSTALLING SYSTEM</span>
-        <span>SECURE CONNECTION</span>
-      </div>
-      <h1 class="loader-name">DEEPANSHI DASARI</h1>
-      <p class="loader-role">Hospitality & Guest Relations Professional</p>
-      <div class="loader-percent"><span id="loaderPercent">0</span>%</div>
-      <div class="loader-bar"><div id="loaderFill"></div></div>
-      <p class="loader-status">LOADING MODULES...</p>
+    <div class="loader-top">
+      <span>INSTALLING SYSTEM</span>
+      <span>SECURE CONNECTION</span>
     </div>
+    <h1 class="loader-name">DEEPANSHI VERMA</h1>
+    <p class="loader-role">Hospitality & Guest Relations Professional</p>
+    <div class="loader-percent"><span id="loaderNum">0</span>%</div>
+    <div class="loader-bar"><div id="loaderFill"></div></div>
+    <p class="loader-status">LOADING MODULES...</p>
   </div>
 
-  <!-- MAIN CONTENT -->
+  <!-- ===== MAIN ===== -->
   <main id="main">
 
-    <!-- HERO / TEXT ZOOM -->
+    <!-- HERO -->
     <section id="hero">
       <div class="hero-sticky">
-        <div class="hero-text" id="heroText">DEEPANSHI</div>
+        <h1 class="hero-text" id="heroText">DEEPANSHI</h1>
         <div class="hero-overlay" id="heroOverlay">
-          <div class="header">
+          <div class="hero-header">
             <span class="logo">deepanshi.</span>
             <span class="tag">Hospitality Professional</span>
           </div>
-          <p class="hero-eyebrow">Welcome to my professional portfolio.</p>
-          <p class="hero-support">Scroll to explore my journey.</p>
-          <span class="hero-scroll">Scroll to enter ↓</span>
+          <p class="hero-eyebrow">Welcome to my professional portfolio</p>
+          <p class="hero-support">Scroll to explore my journey</p>
+          <span class="hero-scroll">Scroll ↓</span>
         </div>
       </div>
     </section>
 
     <!-- ABOUT -->
-    <section class="section about">
+    <section class="section">
       <div class="container about-grid">
         <div class="about-photo-wrap">
           <img src="images/profile.jpg" alt="Deepanshi Verma" class="about-photo" />
-          <span class="badge">● Open to Opportunities 2026</span>
+          <span class="badge">● Open to Opportunities</span>
         </div>
         <div class="about-text">
           <h2>Hello, I'm <span>Deepanshi Verma</span></h2>
-          <p>Seeking a challenging and responsible position within a progressive organization where professional experience, special skills, intelligence, and ambition will be utilized to their full potential.</p>
+          <p>Seeking a challenging position within a progressive organization where professional experience, special skills, intelligence, and ambition will be utilized to their full potential.</p>
           <div class="contact-pills">
             <span>📧 deepanshiyerma133@gmail.com</span>
             <span>📞 7827426631</span>
@@ -64,29 +65,29 @@
       </div>
     </section>
 
-    <!-- CAREER JOURNEY -->
+    <!-- CAREER JOURNEY (Cards Scatter) -->
     <section id="career">
       <div class="career-sticky">
-        <div class="career-headline">
+        <div class="career-headline" id="careerHeadline">
           <h2>From Front Desk<br /><span>To General Manager.</span></h2>
           <p>A journey across India's top hospitality brands.</p>
         </div>
         <div class="cards-wrap" id="cardsWrap">
-          <div class="card" data-img="images/img1.jpg" data-label="goStops · Branch Manager"></div>
-          <div class="card" data-img="images/img4.jpg" data-label="Frankfinn · Aviation Diploma"></div>
-          <div class="card" data-img="images/img3.jpg" data-label="AAddress · Branch Manager"></div>
-          <div class="card" data-img="images/img2.jpg" data-label="Stanza Living · General Manager"></div>
-          <div class="card" data-img="images/img6.jpg" data-label="GM Leadership"></div>
-          <div class="card" data-img="images/img5.jpg" data-label="Mall Operations"></div>
-          <div class="card" data-img="images/img7.jpg" data-label="Team Leadership & Training"></div>
-          <div class="card" data-img="images/img8.jpg" data-label="Client Partnership"></div>
+          <div class="card"><img src="images/img1.jpg" alt="goStops" /></div>
+          <div class="card"><img src="images/img4.jpg" alt="Frankfinn" /></div>
+          <div class="card"><img src="images/img3.jpg" alt="AAddress" /></div>
+          <div class="card"><img src="images/img2.jpg" alt="Stanza Living" /></div>
+          <div class="card"><img src="images/img6.jpg" alt="GM Office" /></div>
+          <div class="card"><img src="images/img5.jpg" alt="Mall" /></div>
+          <div class="card"><img src="images/img7.jpg" alt="Team" /></div>
+          <div class="card"><img src="images/img8.jpg" alt="Client" /></div>
         </div>
-        <div class="scroll-hint">Scroll to spread ↓</div>
+        <div class="scroll-hint" id="scrollHint">Scroll to spread ↓</div>
       </div>
     </section>
 
     <!-- EXPERIENCE -->
-    <section class="section experience">
+    <section class="section">
       <div class="container">
         <h3 class="section-title">Professional Experience</h3>
         <div class="timeline">
@@ -94,26 +95,26 @@
           <div class="t-item"><span>1 Year</span><h4>Branch Manager</h4><p class="co">AAddress.co</p><p>Managed branch operations, client relationships, and team leadership.</p></div>
           <div class="t-item"><span>2 Years</span><h4>Branch Manager</h4><p class="co">goStops Hospitality</p><p>Awarded "Best Branch Manager" for 2 consecutive years.</p></div>
           <div class="t-item"><span>1.5 Years</span><h4>Senior Guest Relation Executive</h4><p class="co">OYO Hotels & Homes</p><p>Handled guest relations and maintained high satisfaction scores.</p></div>
-          <div class="t-item"><span>2 Years</span><h4>Front Office Executive</h4><p class="co">Treebo Hotel Four Sight, Gurgaon</p><p>Managed front desk operations, check-ins/check-outs.</p></div>
-          <div class="t-item"><span>1 Year</span><h4>Front Office Assistant</h4><p class="co">Bhutan Infra Groups (Hotel World Square)</p><p>Assisted in front office management.</p></div>
+          <div class="t-item"><span>2 Years</span><h4>Front Office Executive</h4><p class="co">Treebo Hotel Four Sight, Gurgaon</p><p>Managed front desk operations.</p></div>
+          <div class="t-item"><span>1 Year</span><h4>Front Office Assistant</h4><p class="co">Bhutan Infra Groups</p><p>Assisted in front office management.</p></div>
         </div>
       </div>
     </section>
 
     <!-- SKILLS -->
-    <section class="section skills">
+    <section class="section">
       <div class="container">
         <h3 class="section-title">Skills & Expertise</h3>
         <div class="skills-grid">
           <div><h4>Hotel Software</h4><div class="tags"><span>IDS</span><span>Hotelogix</span><span>eZee Absolute</span><span>Posist</span></div></div>
           <div><h4>Computer Knowledge</h4><div class="tags"><span>Word</span><span>Excel</span><span>PowerPoint</span><span>Outlook</span><span>Windows</span></div></div>
-          <div><h4>Key Skills</h4><div class="tags"><span>Interpersonal Skills</span><span>Listening Ability</span><span>Hard Working</span><span>Team Worker</span></div></div>
+          <div><h4>Key Skills</h4><div class="tags"><span>Interpersonal Skills</span><span>Listening</span><span>Hard Working</span><span>Team Worker</span></div></div>
         </div>
       </div>
     </section>
 
     <!-- EDUCATION -->
-    <section class="section education">
+    <section class="section">
       <div class="container">
         <h3 class="section-title">Education</h3>
         <div class="timeline">
@@ -125,7 +126,7 @@
     </section>
 
     <!-- FUTURE VISION -->
-    <section class="section vision">
+    <section class="section">
       <div class="container">
         <h3 class="section-title">Future Vision</h3>
         <p class="vision-text">To own and manage my own hospitality property, bringing world-class guest experiences to life.</p>
@@ -133,13 +134,13 @@
     </section>
 
     <!-- CONTACT -->
-    <section class="section contact">
+    <section class="section">
       <div class="container">
         <h3 class="section-title">Let's Connect</h3>
         <div class="contact-grid">
           <a href="mailto:deepanshiyerma133@gmail.com">📧 deepanshiyerma133@gmail.com</a>
           <a href="tel:7827426631">📞 7827426631</a>
-          <a href="https://www.instagram.com/deepanshi.diaries" target="_blank" rel="noopener">📸 @deepanshi.diaries</a>
+          <a href="https://www.instagram.com/deepanshi.diaries" target="_blank">📸 @deepanshi.diaries</a>
         </div>
         <p class="footer-note">© 2026 Deepanshi Verma · Built with ♥</p>
       </div>
