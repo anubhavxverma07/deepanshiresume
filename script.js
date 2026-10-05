@@ -1,101 +1,143 @@
+gsap.registerPlugin(ScrollTrigger);
+
 // ===== LOADER =====
-const loader = document.getElementById('loader');
-const loaderPercent = document.getElementById('loaderPercent');
+const loaderNum = document.getElementById('loaderNum');
 const loaderFill = document.getElementById('loaderFill');
-let progress = 0;
-const interval = setInterval(() => {
-  progress += Math.random() * 4 + 1;
-  if (progress >= 100) {
-    progress = 100;
-    clearInterval(interval);
-    setTimeout(() => loader.classList.add('hide'), 500);
+const loader = document.getElementById('loader');
+
+let progress = { value: 0 };
+gsap.to(progress, {
+  value: 100,
+  duration: 2.2,
+  ease: "power2.inOut",
+  onUpdate: () => {
+    loaderNum.textContent = Math.floor(progress.value);
+    loaderFill.style.width = progress.value + '%';
+  },
+  onComplete: () => {
+    gsap.to(loader, {
+      opacity: 0,
+      duration: 0.6,
+      ease: "power2.out",
+      onComplete: () => {
+        loader.style.display = 'none';
+        animateHero();
+      }
+    });
   }
-  loaderPercent.textContent = Math.floor(progress);
-  loaderFill.style.width = progress + '%';
-}, 60);
+});
 
-// ===== HERO TEXT ZOOM =====
-const heroText = document.getElementById('heroText');
-const heroOverlay = document.getElementById('heroOverlay');
-const heroSection = document.getElementById('hero');
+// ===== HERO ANIMATION =====
+function animateHero() {
+  const heroText = document.getElementById('heroText');
+  const heroOverlay = document.getElementById('heroOverlay');
+  const heroSection = document.getElementById('hero');
 
-function updateHero() {
-  const rect = heroSection.getBoundingClientRect();
-  const totalScroll = heroSection.offsetHeight - window.innerHeight;
-  const scrolled = -rect.top;
-  let p = Math.min(Math.max(scrolled / totalScroll, 0), 1);
+  // Text zoom + fade on scroll
+  gsap.to(heroText, {
+    scale: 18,
+    opacity: 0,
+    ease: "power1.in",
+    scrollTrigger: {
+      trigger: heroSection,
+      start: "top top",
+      end: "bottom bottom",
+      scrub: 1,
+    }
+  });
 
-  // Text scales from 1x to 25x over scroll
-  const scale = 1 + p * 24;
-  heroText.style.transform = `scale(${scale})`;
-  heroText.style.opacity = p > 0.85 ? Math.max(0, 1 - (p - 0.85) * 6.6) : 1;
-  heroOverlay.style.opacity = Math.max(0, 1 - p * 3);
-}
-
-// ===== CARDS SCATTER =====
-const cardsWrap = document.getElementById('cardsWrap');
-const cards = cardsWrap.querySelectorAll('.card');
-const careerSection = document.getElementById('career');
-
-// Final positions (in % of viewport)
-const positions = [
-  { x: -38, y: -34, r: -8 },
-  { x:  38, y: -34, r:  8 },
-  { x: -38, y:   0, r: -6 },
-  { x:   0, y:   0, r:  2 },
-  { x:  38, y:   0, r:  6 },
-  { x: -38, y:  34, r:  8 },
-  { x:   0, y:  34, r: -3 },
-  { x:  38, y:  34, r:  7 },
-];
-
-function updateCards() {
-  const rect = careerSection.getBoundingClientRect();
-  const totalScroll = careerSection.offsetHeight - window.innerHeight;
-  const scrolled = -rect.top;
-  let p = Math.min(Math.max(scrolled / totalScroll, 0), 1);
-  // Hold at start, then spread
-  p = Math.min(Math.max((p - 0.15) / 0.7, 0), 1);
-  // Ease in-out
-  const eased = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
-
-  cards.forEach((card, i) => {
-    const pos = positions[i];
-    const startScale = 0.82;
-    const endScale = 1;
-    const scale = startScale + (endScale - startScale) * eased;
-
-    const x = pos.x * eased;
-    const y = pos.y * eased;
-    const r = pos.r * eased;
-
-    // Hover parallax effect (simple)
-    card.style.transform = `translate(calc(-50% + ${x}vw), calc(-50% + ${y}vh)) rotate(${r}deg) scale(${scale})`;
-    card.style.zIndex = 10 + i;
+  // Overlay fade out
+  gsap.to(heroOverlay, {
+    opacity: 0,
+    ease: "power1.in",
+    scrollTrigger: {
+      trigger: heroSection,
+      start: "top top",
+      end: "50% top",
+      scrub: 1,
+    }
   });
 }
 
-// ===== SCROLL LISTENER (requestAnimationFrame) =====
-let ticking = false;
-function onScroll() {
-  if (!ticking) {
-    window.requestAnimationFrame(() => {
-      updateHero();
-      updateCards();
-      ticking = false;
-    });
-    ticking = true;
-  }
-}
+// ===== CAREER CARDS SCATTER =====
+window.addEventListener('load', () => {
+  const careerSection = document.getElementById('career');
+  const cards = document.querySelectorAll('.card');
+  const headline = document.getElementById('careerHeadline');
+  const hint = document.getElementById('scrollHint');
 
-window.addEventListener('scroll', onScroll, { passive: true });
-window.addEventListener('resize', () => {
-  updateHero();
-  updateCards();
+  // Final scatter positions (in vw/vh)
+  const positions = [
+    { x: -38, y: -32, r: -8 },
+    { x:  38, y: -32, r:  8 },
+    { x: -38, y:   0, r: -5 },
+    { x:   0, y:   0, r:  0 },
+    { x:  38, y:   0, r:  5 },
+    { x: -38, y:  32, r:  8 },
+    { x:   0, y:  32, r: -3 },
+    { x:  38, y:  32, r:  7 },
+  ];
+
+  cards.forEach((card, i) => {
+    const pos = positions[i];
+
+    gsap.to(card, {
+      x: `${pos.x}vw`,
+      y: `${pos.y}vh`,
+      rotate: pos.r,
+      scale: 1,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: careerSection,
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 1.2,
+      }
+    });
+  });
+
+  // Headline fade out
+  gsap.to(headline, {
+    opacity: 0,
+    scale: 0.9,
+    ease: "power1.in",
+    scrollTrigger: {
+      trigger: careerSection,
+      start: "30% top",
+      end: "60% top",
+      scrub: 1,
+    }
+  });
+
+  // Scroll hint fade
+  gsap.to(hint, {
+    opacity: 0,
+    ease: "power1.in",
+    scrollTrigger: {
+      trigger: careerSection,
+      start: "top top",
+      end: "20% top",
+      scrub: 1,
+    }
+  });
 });
 
-// Initial call after loader
-setTimeout(() => {
-  updateHero();
-  updateCards();
-}, 2000);
+// ===== SECTION REVEALS =====
+window.addEventListener('load', () => {
+  gsap.utils.toArray('.section').forEach((section) => {
+    const items = section.querySelectorAll('.t-item, .skills-grid > div, .contact-grid a, .vision-text');
+    
+    gsap.from(items, {
+      y: 40,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.1,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: section,
+        start: "top 75%",
+        toggleActions: "play none none reverse",
+      }
+    });
+  });
+});
