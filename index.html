@@ -4,702 +4,206 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
 <title>Deepanshi Verma — Hospitality Professional</title>
-<meta name="description" content="Portfolio of Deepanshi Verma — Hospitality leader with 8+ years across India's top brands." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
 <style>
-/* ==================== THEME ==================== */
-:root {
-  --bg:           #F5F1E8;
-  --paper:        #FFFFFF;
-  --ink:          #0E0D1A;
-  --ink-soft:     #3D3A50;
-  --muted:        #7D7891;
-  --accent:       #B8893D;
-  --accent-2:     #8A6224;
-  --accent-soft:  #F0E2C2;
-  --line:         rgba(14,13,26,0.08);
-  --line-2:       rgba(14,13,26,0.18);
-  --font-display: 'Fraunces', Georgia, serif;
-  --font-body:    'Space Grotesk', system-ui, sans-serif;
-  --font-mono:    'JetBrains Mono', monospace;
+:root{
+  --bg:#FAF7F2;
+  --paper:#FFFFFF;
+  --ink:#0F0E1A;
+  --ink-soft:#3D3A50;
+  --muted:#8A8399;
+  --accent:#FF467A;
+  --accent-2:#D42F5F;
+  --accent-soft:#FFD9E2;
+  --line:rgba(15,14,26,0.08);
+  --line-2:rgba(15,14,26,0.18);
+  --font-display:'Fraunces',Georgia,serif;
+  --font-body:'Space Grotesk',system-ui,sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
 }
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-body);background:var(--bg);color:var(--ink);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
 
-* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: var(--font-body);
-  background: var(--bg);
-  color: var(--ink);
-  font-size: 16px;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  overflow-x: hidden;
-}
-a { color: inherit; text-decoration: none; }
-img { max-width: 100%; display: block; }
-button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+/* LOADER */
+#loader{position:fixed;inset:0;z-index:9999;background:var(--ink);color:var(--bg);display:flex;flex-direction:column;justify-content:space-between;padding:1.75rem 1.25rem;}
+#loader.hide{opacity:0;visibility:hidden;transition:opacity .8s,visibility .8s;}
+.loader-top,.loader-bottom{display:flex;justify-content:space-between;align-items:center;font-family:var(--font-mono);font-size:10px;letter-spacing:.2em;color:rgba(250,247,242,.4);text-transform:uppercase;}
+.loader-center{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.25rem;text-align:center;}
+.loader-kicker{font-family:var(--font-mono);font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:.75rem;}
+.loader-kicker::before,.loader-kicker::after{content:'';width:22px;height:1px;background:var(--accent);}
+.loader-name{font-family:var(--font-display);font-weight:500;font-size:clamp(1.6rem,6.5vw,3rem);letter-spacing:-.03em;line-height:1;color:#FAF7F2;white-space:nowrap;}
+.loader-name em{font-style:italic;color:var(--accent);}
+.loader-percent{font-family:var(--font-display);font-weight:500;font-size:clamp(2.5rem,9vw,4rem);line-height:1;color:rgba(250,247,242,.85);}
+.loader-percent sup{font-size:.4em;vertical-align:super;opacity:.4;}
+.loader-bar{width:min(300px,72vw);height:1px;background:rgba(250,247,242,.12);position:relative;overflow:hidden;}
+.loader-bar::after{content:'';position:absolute;inset:0;background:var(--accent);transform:scaleX(var(--p,0));transform-origin:left;transition:transform .1s linear;}
+.loader-status{color:var(--accent);}
 
-/* ==================== LOADER ==================== */
-#loader {
-  position: fixed; inset: 0; z-index: 9999;
-  background: var(--ink);
-  color: #F5F1E8;
-  display: flex; flex-direction: column;
-  justify-content: space-between;
-  padding: 1.75rem 1.25rem;
-  overflow: hidden;
-}
-#loader.hide { opacity: 0; visibility: hidden; transition: opacity .8s ease, visibility .8s; }
-.loader-top, .loader-bottom {
-  display: flex; justify-content: space-between; align-items: center;
-  font-family: var(--font-mono);
-  font-size: 10px; letter-spacing: .2em;
-  color: rgba(245, 241, 232, .4);
-  text-transform: uppercase;
-}
-.loader-center {
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  gap: 1.5rem; text-align: center;
-  padding: 0 .5rem;
-}
-.loader-kicker {
-  font-family: var(--font-mono);
-  font-size: 10px; letter-spacing: .4em;
-  text-transform: uppercase;
-  color: var(--accent);
-  display: flex; align-items: center; gap: .75rem;
-}
-.loader-kicker::before, .loader-kicker::after {
-  content: ''; width: 24px; height: 1px; background: var(--accent);
-}
-.loader-name {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(1.75rem, 7vw, 3.5rem);
-  letter-spacing: -.03em;
-  line-height: 1;
-  color: #F5F1E8;
-  white-space: nowrap;
-}
-.loader-name em { font-style: italic; font-weight: 500; color: var(--accent); }
-.loader-percent {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(2.5rem, 9vw, 4.5rem);
-  line-height: 1;
-  letter-spacing: -.03em;
-  color: rgba(245, 241, 232, .85);
-}
-.loader-percent sup { font-size: .4em; vertical-align: super; opacity: .4; margin-left: 2px; }
-.loader-bar {
-  width: min(320px, 76vw); height: 1px;
-  background: rgba(245, 241, 232, .12);
-  position: relative; overflow: hidden;
-}
-.loader-bar::after {
-  content: ''; position: absolute; inset: 0;
-  background: var(--accent);
-  transform: scaleX(var(--p, 0));
-  transform-origin: left;
-  transition: transform .1s linear;
-}
-.loader-status { color: var(--accent); }
+/* NAV */
+#nav{position:fixed;top:0;left:0;right:0;z-index:900;padding:.9rem 1.25rem;background:rgba(250,247,242,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid transparent;transition:border-color .3s,padding .3s;}
+#nav.scrolled{border-bottom-color:var(--line);padding:.65rem 1.25rem;}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;}
+.nav-logo{font-family:var(--font-body);font-weight:600;font-size:1.2rem;letter-spacing:-.05em;color:var(--ink);}
+.nav-links{display:none;gap:1.75rem;font-size:.85rem;font-weight:500;}
+.nav-links a{color:var(--ink-soft);transition:color .2s;position:relative;}
+.nav-links a.active,.nav-links a:hover{color:var(--ink);}
+.nav-links a.active::after{content:'';position:absolute;left:0;right:0;bottom:-5px;height:2px;background:var(--accent);border-radius:2px;}
+.nav-menu-btn{display:flex;flex-direction:column;gap:5px;padding:.6rem;z-index:1002;}
+.nav-menu-btn span{display:block;width:24px;height:2px;background:var(--ink);border-radius:2px;transition:transform .35s cubic-bezier(.2,.7,.2,1),opacity .25s;}
+.nav-menu-btn.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-menu-btn.open span:nth-child(2){opacity:0;}
+.nav-menu-btn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.mobile-menu{position:fixed;top:0;right:0;bottom:0;width:min(340px,88vw);background:var(--ink);color:#FAF7F2;z-index:1000;padding:6rem 2rem 2rem;display:flex;flex-direction:column;gap:.75rem;transform:translateX(100%);transition:transform .45s cubic-bezier(.2,.7,.2,1);box-shadow:-30px 0 60px -20px rgba(0,0,0,.4);}
+.mobile-menu.open{transform:translateX(0);}
+.mobile-menu .mm-label{font-family:var(--font-mono);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem;}
+.mobile-menu a{font-family:var(--font-display);font-weight:500;font-size:1.65rem;color:rgba(250,247,242,.7);padding:.35rem 0;border-bottom:1px solid rgba(250,247,242,.06);transition:color .2s,padding-left .2s;}
+.mobile-menu a.active,.mobile-menu a:hover{color:var(--accent);padding-left:.5rem;}
+.menu-backdrop{position:fixed;inset:0;background:rgba(15,14,26,.35);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:999;opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s;}
+.menu-backdrop.open{opacity:1;visibility:visible;}
+@media(min-width:900px){.nav-links{display:flex;}.nav-menu-btn{display:none;}.mobile-menu,.menu-backdrop{display:none;}}
 
-/* ==================== NAV ==================== */
-#nav {
-  position: fixed; top: 0; left: 0; right: 0;
-  z-index: 900;
-  padding: .9rem 1.25rem;
-  background: rgba(245, 241, 232, .85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid transparent;
-  transition: border-color .3s, padding .3s;
-}
-#nav.scrolled { border-bottom-color: var(--line); padding: .65rem 1.25rem; }
-.nav-inner {
-  max-width: 1200px; margin: 0 auto;
-  display: flex; justify-content: space-between; align-items: center;
-}
-.nav-logo {
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 1.2rem;
-  letter-spacing: -.05em;
-  color: var(--ink);
-}
-.nav-links { display: none; gap: 1.75rem; font-size: .85rem; font-weight: 500; }
-.nav-links a { color: var(--ink-soft); transition: color .2s; position: relative; }
-.nav-links a.active, .nav-links a:hover { color: var(--ink); }
-.nav-links a.active::after {
-  content: ''; position: absolute; left: 0; right: 0; bottom: -5px;
-  height: 2px; background: var(--accent); border-radius: 2px;
-}
+/* PAGES */
+#main{min-height:100vh;}
+.page{display:none;}
+.page.active{display:block;animation:pageIn .55s cubic-bezier(.2,.7,.2,1);}
+@keyframes pageIn{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+.page-inner{max-width:1100px;margin:0 auto;padding:6.5rem 1.25rem 3.5rem;}
+.page-label{font-family:var(--font-mono);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);margin-bottom:1.25rem;display:flex;align-items:center;gap:.75rem;}
+.page-label::before{content:'';width:24px;height:1px;background:var(--accent);}
+.page-title{font-family:var(--font-display);font-weight:500;font-size:clamp(2.25rem,7vw,4rem);line-height:1.02;letter-spacing:-.03em;margin-bottom:2.5rem;}
+.page-title em{font-style:italic;color:var(--accent);}
 
-/* Hamburger */
-.nav-menu-btn {
-  display: flex; flex-direction: column; gap: 5px;
-  padding: .6rem;
-  z-index: 1002;
-  background: transparent;
-  position: relative;
-}
-.nav-menu-btn span {
-  display: block; width: 24px; height: 2px;
-  background: var(--ink);
-  border-radius: 2px;
-  transition: transform .35s cubic-bezier(.2,.7,.2,1), opacity .25s;
-}
-.nav-menu-btn.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.nav-menu-btn.open span:nth-child(2) { opacity: 0; }
-.nav-menu-btn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+/* HOME HERO */
+.home-hero{padding:7rem 1.25rem 3rem;max-width:1100px;margin:0 auto;text-align:center;display:flex;flex-direction:column;align-items:center;}
+.home-photo-wrap{width:clamp(140px,30vw,200px);aspect-ratio:1/1;border-radius:50%;overflow:hidden;border:2px solid var(--accent);box-shadow:0 30px 70px -30px rgba(255,70,122,.55);margin-bottom:1.75rem;background:var(--paper);}
+.home-photo{width:100%;height:100%;object-fit:cover;object-position:center top;}
+.home-kicker{font-family:var(--font-mono);font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:var(--accent);margin-bottom:.9rem;display:flex;align-items:center;gap:.6rem;}
+.home-kicker::before,.home-kicker::after{content:'';width:14px;height:1px;background:var(--accent);}
+.home-name{font-family:var(--font-display);font-weight:500;font-size:clamp(2.5rem,10vw,5.5rem);line-height:.95;letter-spacing:-.04em;color:var(--ink);margin-bottom:1rem;}
+.home-name em{font-style:italic;color:var(--accent);}
+.home-sub{font-size:clamp(.9rem,2.4vw,1.05rem);color:var(--ink-soft);max-width:38ch;margin-bottom:2rem;line-height:1.55;}
+.home-cta{display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center;}
+.btn{display:inline-flex;align-items:center;gap:.55rem;padding:.9rem 1.5rem;font-size:.85rem;font-weight:600;border-radius:100px;transition:all .25s;border:1px solid transparent;}
+.btn-primary{background:var(--ink);color:var(--bg);}
+.btn-primary:hover{background:var(--accent);transform:translateY(-2px);}
+.btn-ghost{border-color:var(--line-2);color:var(--ink);}
+.btn-ghost:hover{background:var(--ink);color:var(--bg);}
 
-/* Slide-in mobile menu */
-.mobile-menu {
-  position: fixed; top: 0; right: 0; bottom: 0;
-  width: min(340px, 88vw);
-  background: var(--ink);
-  color: #F5F1E8;
-  z-index: 1000;
-  padding: 6rem 2rem 2rem;
-  display: flex; flex-direction: column;
-  gap: 1rem;
-  transform: translateX(100%);
-  transition: transform .45s cubic-bezier(.2,.7,.2,1);
-  box-shadow: -30px 0 60px -20px rgba(0,0,0,.4);
-  overflow-y: auto;
-}
-.mobile-menu.open { transform: translateX(0); }
-.mobile-menu .mm-label {
-  font-family: var(--font-mono);
-  font-size: 10px; letter-spacing: .3em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 1rem;
-}
-.mobile-menu a {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 1.75rem;
-  letter-spacing: -.02em;
-  color: rgba(245, 241, 232, .7);
-  transition: color .2s, padding-left .2s;
-  padding: .35rem 0;
-  border-bottom: 1px solid rgba(245, 241, 232, .06);
-}
-.mobile-menu a.active, .mobile-menu a:hover {
-  color: var(--accent);
-  padding-left: .5rem;
-}
-.menu-backdrop {
-  position: fixed; inset: 0;
-  background: rgba(14, 13, 26, .35);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  z-index: 999;
-  opacity: 0; visibility: hidden;
-  transition: opacity .35s, visibility .35s;
-}
-.menu-backdrop.open { opacity: 1; visibility: visible; }
+/* CINEMATIC SCATTER */
+#cine{position:relative;height:340vh;background:var(--ink);}
+.cine-sticky{position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.cine-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,70,122,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,70,122,.06) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;}
+.cine-title{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;z-index:5;pointer-events:none;}
+.cine-title h2{font-family:var(--font-display);font-weight:400;font-size:clamp(2.25rem,7vw,5rem);line-height:1;letter-spacing:-.03em;color:#FAF7F2;}
+.cine-title h2 span{display:block;}
+.cine-title h2 .line2{font-style:italic;color:var(--accent);}
+.cine-title p{margin-top:1.25rem;font-family:var(--font-mono);font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:rgba(250,247,242,.5);}
+.cine-photo{position:absolute;top:50%;left:50%;width:clamp(90px,22vw,240px);aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:var(--paper);box-shadow:0 25px 60px -15px rgba(0,0,0,.6);will-change:transform;border:1px solid rgba(250,247,242,.08);transform:translate(-50%,-50%) scale(.35);opacity:0;pointer-events:auto;cursor:pointer;transition:box-shadow .3s,border-color .3s;backface-visibility:hidden;-webkit-backface-visibility:hidden;}
+.cine-photo:hover{box-shadow:0 30px 80px -15px rgba(255,70,122,.7);border-color:var(--accent);}
+.cine-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+.cine-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);font-family:var(--font-mono);font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:rgba(250,247,242,.45);display:flex;align-items:center;gap:.5rem;z-index:6;animation:bob 2s ease-in-out infinite;}
+@keyframes bob{0%,100%{transform:translate(-50%,0);}50%{transform:translate(-50%,5px);}}
+.cine-hint svg{width:12px;height:12px;}
 
-@media (min-width: 900px) {
-  .nav-links { display: flex; }
-  .nav-menu-btn { display: none; }
-  .mobile-menu, .menu-backdrop { display: none; }
-}
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr;gap:2.5rem;align-items:start;}
+@media(min-width:768px){.about-grid{grid-template-columns:340px 1fr;gap:3.5rem;}}
+.about-photo-wrap{position:relative;border-radius:16px;overflow:hidden;background:var(--paper);border:1px solid var(--line);box-shadow:0 30px 70px -40px rgba(15,14,26,.4);}
+.about-photo{width:100%;height:auto;display:block;aspect-ratio:3/4;object-fit:cover;object-position:center top;}
+.about-badge{position:absolute;bottom:1rem;left:1rem;background:rgba(15,14,26,.9);backdrop-filter:blur(10px);color:#8CE8A8;font-family:var(--font-mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;padding:.5rem .9rem;border-radius:100px;display:flex;align-items:center;gap:.5rem;}
+.about-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:#8CE8A8;animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(1.4);}}
+.about-body h2{font-family:var(--font-display);font-weight:500;font-size:clamp(1.75rem,4vw,2.5rem);line-height:1.1;letter-spacing:-.02em;margin-bottom:1.5rem;}
+.about-body h2 em{font-style:italic;color:var(--accent);}
+.about-body p{color:var(--ink-soft);font-size:1rem;line-height:1.75;margin-bottom:1.25rem;max-width:58ch;}
+.contact-pills{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem;}
+.contact-pills a{display:inline-flex;align-items:center;gap:.5rem;padding:.65rem 1.1rem;background:var(--paper);border:1px solid var(--line);border-radius:100px;font-size:.8rem;font-weight:500;transition:all .2s;}
+.contact-pills a:hover{border-color:var(--accent);background:var(--accent);color:white;transform:translateY(-2px);}
 
-/* ==================== PAGES ==================== */
-#main { min-height: 100vh; }
-.page { display: none; }
-.page.active { display: block; animation: pageIn .55s cubic-bezier(.2,.7,.2,1); }
-@keyframes pageIn {
-  from { opacity: 0; transform: translateY(14px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.page-inner { max-width: 1100px; margin: 0 auto; padding: 6.5rem 1.25rem 3.5rem; }
+/* EXPERIENCE */
+.exp-list{display:flex;flex-direction:column;}
+.exp-item{padding:2rem 0;border-top:1px solid var(--line);}
+.exp-item:last-child{border-bottom:1px solid var(--line);}
+.exp-year{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:.35rem;}
+.exp-role{font-family:var(--font-display);font-weight:500;font-size:clamp(1.35rem,3.5vw,1.85rem);line-height:1.15;letter-spacing:-.02em;}
+.exp-company{font-size:.9rem;color:var(--muted);font-weight:500;margin-top:.2rem;}
+.exp-desc{font-size:.95rem;color:var(--ink-soft);line-height:1.65;max-width:62ch;margin-top:.75rem;}
+.exp-flag{display:inline-flex;align-items:center;gap:.4rem;margin-top:.85rem;font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-2);background:var(--accent-soft);padding:.35rem .7rem;border-radius:4px;}
 
-.page-label {
-  font-family: var(--font-mono);
-  font-size: 10px; letter-spacing: .3em;
-  text-transform: uppercase; color: var(--accent);
-  margin-bottom: 1.25rem;
-  display: flex; align-items: center; gap: .75rem;
-}
-.page-label::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
-.page-title {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(2.25rem, 7vw, 4rem);
-  line-height: 1.02;
-  letter-spacing: -.03em;
-  margin-bottom: 2.5rem;
-  color: var(--ink);
-}
-.page-title em { font-style: italic; color: var(--accent); }
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:1fr;gap:1rem;}
+@media(min-width:768px){.skills-grid{grid-template-columns:repeat(3,1fr);gap:1.25rem;}}
+.skill-card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:1.75rem;transition:transform .3s,box-shadow .3s,border-color .3s;}
+.skill-card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 20px 45px -20px rgba(255,70,122,.3);}
+.skill-card h3{font-family:var(--font-display);font-weight:500;font-size:1.35rem;margin-bottom:1.25rem;display:flex;align-items:center;gap:.5rem;}
+.skill-card h3 .num{font-family:var(--font-mono);font-size:10px;color:var(--accent);letter-spacing:.15em;}
+.skill-tags{display:flex;flex-wrap:wrap;gap:.5rem;}
+.skill-tags span{font-size:.8rem;padding:.4rem .85rem;background:var(--bg);border:1px solid var(--line);border-radius:100px;color:var(--ink-soft);transition:all .2s;}
+.skill-tags span:hover{background:var(--accent);color:white;border-color:var(--accent);}
 
-/* ==================== HOME ==================== */
-#page-home { position: relative; }
+/* JOURNEY GRID */
+.journey-grid{display:grid;grid-template-columns:1fr;gap:1rem;}
+@media(min-width:640px){.journey-grid{grid-template-columns:repeat(2,1fr);gap:1.25rem;}}
+.journey-card{position:relative;border-radius:16px;overflow:hidden;background:var(--paper);border:1px solid var(--line);aspect-ratio:16/9;transition:transform .4s,border-color .3s,box-shadow .4s;cursor:pointer;}
+.journey-card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 25px 55px -25px rgba(255,70,122,.4);}
+.journey-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s;}
+.journey-card:hover img{transform:scale(1.05);}
+.jc-overlay{position:absolute;left:0;right:0;bottom:0;padding:1.15rem;background:linear-gradient(to top,rgba(15,14,26,.9),transparent);color:#FAF7F2;}
+.jc-label{font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,247,242,.75);margin-bottom:.3rem;}
+.jc-title{font-family:var(--font-display);font-weight:500;font-size:1.1rem;line-height:1.2;}
+.journey-card.highlight{box-shadow:0 30px 80px -20px rgba(255,70,122,.65);border-color:var(--accent);transform:translateY(-4px) scale(1.02);}
 
-.home-stage {
-  position: relative;
-  height: 260vh;
-}
-.home-sticky {
-  position: sticky; top: 0;
-  height: 100vh;
-  width: 100%;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 5rem 1rem 8rem;
-  background:
-    radial-gradient(circle at 50% 40%, rgba(184,137,61,.08), transparent 60%),
-    var(--bg);
-}
-.home-center {
-  position: relative;
-  z-index: 2;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  text-align: center;
-  will-change: transform, opacity;
-  transform-origin: center center;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
-.home-photo-wrap {
-  width: clamp(120px, 28vw, 190px);
-  aspect-ratio: 1 / 1;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 2px solid var(--accent);
-  box-shadow: 0 30px 70px -30px rgba(184,137,61,.6);
-  margin-bottom: 1.5rem;
-  background: var(--paper);
-  position: relative;
-}
-.home-photo { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
-.home-kicker {
-  font-family: var(--font-mono);
-  font-size: 10px; letter-spacing: .35em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: .9rem;
-  display: flex; align-items: center; gap: .6rem;
-}
-.home-kicker::before, .home-kicker::after {
-  content: ''; width: 14px; height: 1px; background: var(--accent);
-}
-.home-name {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(2.75rem, 10vw, 6rem);
-  line-height: .95;
-  letter-spacing: -.04em;
-  color: var(--ink);
-  margin-bottom: 1rem;
-  white-space: nowrap;
-}
-.home-name em { font-style: italic; color: var(--accent); }
-.home-sub {
-  font-size: clamp(.85rem, 2.4vw, 1rem);
-  color: var(--ink-soft);
-  max-width: 34ch;
-  margin-bottom: 1.5rem;
-  line-height: 1.5;
-}
-.home-hint {
-  font-family: var(--font-mono);
-  font-size: 10px; letter-spacing: .25em;
-  text-transform: uppercase;
-  color: var(--muted);
-  display: flex; align-items: center; gap: .5rem;
-  animation: bob 2s ease-in-out infinite;
-}
-@keyframes bob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(4px); }
-}
-.home-hint svg { width: 12px; height: 12px; }
+/* CONTACT */
+.contact-hero{font-family:var(--font-display);font-weight:500;font-size:clamp(2rem,6vw,3.5rem);line-height:1.08;letter-spacing:-.03em;margin-bottom:1.25rem;}
+.contact-hero em{color:var(--accent);font-style:italic;}
+.contact-intro{color:var(--ink-soft);max-width:52ch;margin-bottom:2.5rem;}
+.contact-cards{display:grid;grid-template-columns:1fr;gap:.75rem;}
+@media(min-width:640px){.contact-cards{grid-template-columns:repeat(2,1fr);}}
+.contact-card{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;background:var(--paper);border:1px solid var(--line);border-radius:14px;transition:all .3s;gap:1rem;}
+.contact-card:hover{border-color:var(--accent);background:var(--accent);color:white;transform:translateY(-2px);}
+.cc-left{display:flex;flex-direction:column;gap:.15rem;min-width:0;flex:1;}
+.cc-label{font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;opacity:.6;}
+.cc-value{font-size:.9rem;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.cc-arrow{flex-shrink:0;width:36px;height:36px;border-radius:50%;border:1px solid var(--line-2);display:grid;place-items:center;transition:all .3s;}
+.contact-card:hover .cc-arrow{border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.15);transform:rotate(-45deg);}
 
-/* Bottom photo row */
-.home-photo-row {
-  position: absolute;
-  bottom: 1.25rem;
-  left: 0; right: 0;
-  display: flex;
-  justify-content: center;
-  gap: clamp(.35rem, 1.5vw, .75rem);
-  padding: 0 .75rem;
-  z-index: 3;
-  pointer-events: none;
-}
-.hp {
-  flex: 0 0 auto;
-  width: clamp(48px, 10.5vw, 100px);
-  aspect-ratio: 16 / 9;
-  border-radius: 8px;
-  overflow: hidden;
-  background: var(--paper);
-  border: 1px solid var(--line);
-  box-shadow: 0 10px 25px -8px rgba(14,13,26,.25);
-  will-change: transform, opacity;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  pointer-events: auto;
-  cursor: pointer;
-  transition: box-shadow .3s;
-}
-.hp:hover { box-shadow: 0 16px 40px -10px rgba(184,137,61,.55); }
-.hp img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* FOOTER */
+footer{border-top:1px solid var(--line);padding:3rem 1.25rem 2rem;text-align:center;}
+.footer-inner{max-width:800px;margin:0 auto;}
+.footer-line{font-family:var(--font-display);font-weight:500;font-size:clamp(1.1rem,3vw,1.5rem);font-style:italic;color:var(--ink-soft);margin-bottom:2rem;line-height:1.4;}
+.footer-citizen{font-family:var(--font-mono);font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);margin-bottom:2rem;display:inline-flex;align-items:center;gap:.6rem;}
+.footer-citizen .dot{width:5px;height:5px;border-radius:50%;background:var(--accent);}
+.footer-credit{font-size:.85rem;color:var(--muted);}
+.footer-credit .name{font-family:var(--font-display);font-style:italic;font-weight:500;font-size:1.1em;color:var(--ink);}
 
-/* ==================== ABOUT ==================== */
-.about-grid {
-  display: grid; grid-template-columns: 1fr;
-  gap: 2.5rem; align-items: start;
-}
-@media (min-width: 768px) {
-  .about-grid { grid-template-columns: 340px 1fr; gap: 3.5rem; }
-}
-.about-photo-wrap {
-  position: relative;
-  border-radius: 16px;
-  overflow: hidden;
-  background: var(--paper);
-  border: 1px solid var(--line);
-  box-shadow: 0 30px 70px -40px rgba(14,13,26,.4);
-}
-.about-photo {
-  width: 100%;
-  height: auto;
-  display: block;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-  object-position: center top;
-}
-.about-badge {
-  position: absolute; bottom: 1rem; left: 1rem;
-  background: rgba(14, 13, 26, .9);
-  backdrop-filter: blur(10px);
-  color: #8CE8A8;
-  font-family: var(--font-mono);
-  font-size: 10px; letter-spacing: .15em;
-  text-transform: uppercase;
-  padding: .5rem .9rem; border-radius: 100px;
-  display: flex; align-items: center; gap: .5rem;
-}
-.about-badge::before {
-  content: ''; width: 6px; height: 6px;
-  border-radius: 50%; background: #8CE8A8;
-  animation: pulse 2s ease-in-out infinite;
-}
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: .4; transform: scale(1.4); }
-}
-.about-body h2 {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
-  line-height: 1.1; letter-spacing: -.02em;
-  margin-bottom: 1.5rem;
-}
-.about-body h2 em { font-style: italic; color: var(--accent); }
-.about-body p {
-  color: var(--ink-soft);
-  font-size: 1rem; line-height: 1.75;
-  margin-bottom: 1.25rem;
-  max-width: 58ch;
-}
-.contact-pills { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.5rem; }
-.contact-pills a {
-  display: inline-flex; align-items: center; gap: .5rem;
-  padding: .65rem 1.1rem;
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: 100px;
-  font-size: .8rem; font-weight: 500;
-  transition: all .2s;
-}
-.contact-pills a:hover {
-  border-color: var(--accent);
-  background: var(--accent);
-  color: white;
-  transform: translateY(-2px);
-}
-
-/* ==================== EXPERIENCE ==================== */
-.exp-list { display: flex; flex-direction: column; }
-.exp-item {
-  padding: 2rem 0;
-  border-top: 1px solid var(--line);
-}
-.exp-item:last-child { border-bottom: 1px solid var(--line); }
-.exp-year {
-  font-family: var(--font-mono);
-  font-size: 11px; letter-spacing: .18em;
-  text-transform: uppercase; color: var(--accent);
-  margin-bottom: .35rem;
-}
-.exp-role {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(1.35rem, 3.5vw, 1.85rem);
-  line-height: 1.15; letter-spacing: -.02em;
-}
-.exp-company {
-  font-size: .9rem; color: var(--muted);
-  font-weight: 500; margin-top: .2rem;
-}
-.exp-desc {
-  font-size: .95rem; color: var(--ink-soft);
-  line-height: 1.65; max-width: 62ch;
-  margin-top: .75rem;
-}
-.exp-flag {
-  display: inline-flex; align-items: center; gap: .4rem;
-  margin-top: .85rem;
-  font-family: var(--font-mono);
-  font-size: 10px; letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--accent-2);
-  background: var(--accent-soft);
-  padding: .35rem .7rem; border-radius: 4px;
-}
-
-/* ==================== SKILLS ==================== */
-.skills-grid {
-  display: grid; grid-template-columns: 1fr; gap: 1rem;
-}
-@media (min-width: 768px) { .skills-grid { grid-template-columns: repeat(3, 1fr); gap: 1.25rem; } }
-.skill-card {
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  padding: 1.75rem;
-  transition: transform .3s, box-shadow .3s, border-color .3s;
-}
-.skill-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--accent);
-  box-shadow: 0 20px 45px -20px rgba(184,137,61,.3);
-}
-.skill-card h3 {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 1.35rem;
-  letter-spacing: -.01em;
-  margin-bottom: 1.25rem;
-  display: flex; align-items: center; gap: .5rem;
-}
-.skill-card h3 .num {
-  font-family: var(--font-mono);
-  font-size: 10px; color: var(--accent);
-  letter-spacing: .15em;
-}
-.skill-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
-.skill-tags span {
-  font-size: .8rem;
-  padding: .4rem .85rem;
-  background: var(--bg);
-  border: 1px solid var(--line);
-  border-radius: 100px;
-  color: var(--ink-soft);
-  transition: all .2s;
-}
-.skill-tags span:hover {
-  background: var(--accent); color: white;
-  border-color: var(--accent);
-}
-
-/* ==================== JOURNEY ==================== */
-.journey-grid {
-  display: grid; grid-template-columns: 1fr; gap: 1rem;
-}
-@media (min-width: 640px) { .journey-grid { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; } }
-.journey-card {
-  position: relative;
-  border-radius: 16px;
-  overflow: hidden;
-  background: var(--paper);
-  border: 1px solid var(--line);
-  aspect-ratio: 16 / 9;
-  transition: transform .4s cubic-bezier(.2,.7,.2,1), border-color .3s, box-shadow .4s;
-  cursor: pointer;
-}
-.journey-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--accent);
-  box-shadow: 0 25px 55px -25px rgba(184,137,61,.4);
-}
-.journey-card img {
-  width: 100%; height: 100%;
-  object-fit: cover; display: block;
-  transition: transform .8s cubic-bezier(.2,.7,.2,1);
-}
-.journey-card:hover img { transform: scale(1.05); }
-.jc-overlay {
-  position: absolute; left: 0; right: 0; bottom: 0;
-  padding: 1.15rem;
-  background: linear-gradient(to top, rgba(14,13,26,.9) 0%, rgba(14,13,26,0) 100%);
-  color: #F5F1E8;
-}
-.jc-label {
-  font-family: var(--font-mono);
-  font-size: 10px; letter-spacing: .18em;
-  text-transform: uppercase;
-  color: rgba(245,241,232,.75);
-  margin-bottom: .3rem;
-}
-.jc-title {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 1.1rem;
-  line-height: 1.2; letter-spacing: -.01em;
-}
-.journey-card.highlight {
-  box-shadow: 0 30px 80px -20px rgba(184,137,61,.65);
-  border-color: var(--accent);
-  transform: translateY(-4px) scale(1.02);
-}
-
-/* ==================== CONTACT ==================== */
-.contact-hero {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(2rem, 6vw, 3.5rem);
-  line-height: 1.08; letter-spacing: -.03em;
-  margin-bottom: 1.25rem;
-}
-.contact-hero em { color: var(--accent); font-style: italic; }
-.contact-intro {
-  color: var(--ink-soft);
-  max-width: 52ch; margin-bottom: 2.5rem;
-  font-size: 1rem;
-}
-.contact-cards {
-  display: grid; grid-template-columns: 1fr; gap: .75rem;
-}
-@media (min-width: 640px) { .contact-cards { grid-template-columns: repeat(2, 1fr); } }
-.contact-card {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 1.25rem 1.5rem;
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  transition: all .3s;
-  gap: 1rem;
-}
-.contact-card:hover {
-  border-color: var(--accent);
-  background: var(--accent);
-  color: white;
-  transform: translateY(-2px);
-}
-.cc-left { display: flex; flex-direction: column; gap: .15rem; min-width: 0; flex: 1; }
-.cc-label {
-  font-family: var(--font-mono);
-  font-size: 10px; letter-spacing: .18em;
-  text-transform: uppercase; opacity: .6;
-}
-.cc-value {
-  font-size: .9rem; font-weight: 500;
-  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-}
-.cc-arrow {
-  flex-shrink: 0;
-  width: 36px; height: 36px;
-  border-radius: 50%;
-  border: 1px solid var(--line-2);
-  display: grid; place-items: center;
-  transition: all .3s;
-}
-.contact-card:hover .cc-arrow {
-  border-color: rgba(255,255,255,.4);
-  background: rgba(255,255,255,.15);
-  transform: rotate(-45deg);
-}
-
-/* ==================== FOOTER ==================== */
-footer {
-  border-top: 1px solid var(--line);
-  padding: 3rem 1.25rem 2rem;
-  text-align: center;
-  background: var(--bg);
-}
-.footer-inner { max-width: 800px; margin: 0 auto; }
-.footer-line {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(1.1rem, 3vw, 1.5rem);
-  font-style: italic;
-  color: var(--ink-soft);
-  margin-bottom: 2rem;
-  line-height: 1.4;
-}
-.footer-citizen {
-  font-family: var(--font-mono);
-  font-size: 10px; letter-spacing: .25em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 2rem;
-  display: inline-flex; align-items: center; gap: .6rem;
-}
-.footer-citizen .dot {
-  width: 5px; height: 5px; border-radius: 50%;
-  background: var(--accent);
-}
-.footer-credit {
-  font-size: .85rem;
-  color: var(--muted);
-}
-.footer-credit .name {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 500;
-  font-size: 1.1em;
-  color: var(--ink);
-}
-
-/* ==================== UTILS ==================== */
-.reveal {
-  opacity: 0; transform: translateY(20px);
-  transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1);
-}
-.reveal.in { opacity: 1; transform: translateY(0); }
-
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--line-2); border-radius: 3px; }
+/* UTILS */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1);}
+.reveal.in{opacity:1;transform:translateY(0);}
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--line-2);border-radius:3px;}
 </style>
 </head>
 <body>
 
 <!-- LOADER -->
 <div id="loader">
-  <div class="loader-top">
-    <span>◉ Installing System</span>
-    <span>Secure Connection</span>
-  </div>
+  <div class="loader-top"><span>◉ Installing System</span><span>Secure Connection</span></div>
   <div class="loader-center">
     <div class="loader-kicker">Portfolio 2026</div>
     <div class="loader-name">Deepanshi <em>Verma.</em></div>
     <div class="loader-percent"><span id="loaderNum">0</span><sup>%</sup></div>
     <div class="loader-bar" id="loaderBar"></div>
   </div>
-  <div class="loader-bottom">
-    <span id="loaderStatus">Initializing</span>
-    <span>v 1.0</span>
-  </div>
+  <div class="loader-bottom"><span id="loaderStatus">Initializing</span><span>v 1.0</span></div>
 </div>
 
 <!-- NAV -->
@@ -714,12 +218,9 @@ footer {
       <a href="#journey" data-page="journey">Journey</a>
       <a href="#contact" data-page="contact">Contact</a>
     </div>
-    <button class="nav-menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="nav-menu-btn" id="menuBtn" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
-
 <div class="menu-backdrop" id="menuBackdrop"></div>
 <aside class="mobile-menu" id="mobileMenu">
   <div class="mm-label">Navigate</div>
@@ -736,33 +237,54 @@ footer {
 
   <!-- HOME -->
   <section class="page active" id="page-home">
-    <div class="home-stage" id="homeStage">
-      <div class="home-sticky">
-        <div class="home-center" id="homeCenter">
-          <div class="home-photo-wrap">
-            <img src="images/profile.jpg" alt="Deepanshi Verma" class="home-photo" />
-          </div>
-          <div class="home-kicker">Portfolio 2026</div>
-          <h1 class="home-name">Deepanshi <em>Verma</em></h1>
-          <p class="home-sub">Hospitality leader — from front desk to general manager, across India's finest brands.</p>
-          <div class="home-hint">
-            <span>Scroll to explore</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
-          </div>
-        </div>
 
-        <div class="home-photo-row" id="photoRow">
-          <div class="hp" data-i="0"><img src="images/img1.jpg" alt="goStops" /></div>
-          <div class="hp" data-i="1"><img src="images/img2.jpg" alt="Stanza" /></div>
-          <div class="hp" data-i="2"><img src="images/img3.jpg" alt="AAddress" /></div>
-          <div class="hp" data-i="3"><img src="images/img4.jpg" alt="Frankfinn" /></div>
-          <div class="hp" data-i="4"><img src="images/img5.jpg" alt="Mall Ops" /></div>
-          <div class="hp" data-i="5"><img src="images/img6.jpg" alt="GM Desk" /></div>
-          <div class="hp" data-i="6"><img src="images/img7.jpg" alt="Team" /></div>
-          <div class="hp" data-i="7"><img src="images/img8.jpg" alt="Client" /></div>
+    <!-- Simple hero -->
+    <div class="home-hero">
+      <div class="home-photo-wrap">
+        <img src="images/profile.jpg" alt="Deepanshi Verma" class="home-photo" />
+      </div>
+      <div class="home-kicker">Portfolio 2026</div>
+      <h1 class="home-name">Deepanshi <em>Verma</em></h1>
+      <p class="home-sub">Hospitality leader — from front desk to general manager, across India's finest brands.</p>
+      <div class="home-cta">
+        <a href="#about" class="btn btn-primary" data-page="about">Explore Portfolio
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#contact" class="btn btn-ghost" data-page="contact">Get in Touch</a>
+      </div>
+    </div>
+
+    <!-- Cinematic scatter -->
+    <div id="cine">
+      <div class="cine-sticky">
+        <div class="cine-grid-bg"></div>
+        <div class="cine-photo" data-i="0"><img src="images/img1.jpg" alt="goStops"></div>
+        <div class="cine-photo" data-i="1"><img src="images/img4.jpg" alt="Frankfinn"></div>
+        <div class="cine-photo" data-i="2"><img src="images/img3.jpg" alt="AAddress"></div>
+        <div class="cine-photo" data-i="3"><img src="images/img2.jpg" alt="Stanza"></div>
+        <div class="cine-photo" data-i="4"><img src="images/img6.jpg" alt="GM Desk"></div>
+        <div class="cine-photo" data-i="5"><img src="images/img5.jpg" alt="Mall"></div>
+        <div class="cine-photo" data-i="6"><img src="images/img7.jpg" alt="Team"></div>
+        <div class="cine-photo" data-i="7"><img src="images/img8.jpg" alt="Client"></div>
+        <div class="cine-title" id="cineTitle">
+          <h2><span>From Front Desk</span><span class="line2">To General Manager.</span></h2>
+          <p>A journey across India's hospitality brands</p>
+        </div>
+        <div class="cine-hint">
+          <span>Scroll to explore</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
         </div>
       </div>
     </div>
+
+    <!-- Home footer -->
+    <footer>
+      <div class="footer-inner">
+        <p class="footer-line">"Hospitality is not a job — it's the quiet art of making people feel at home."</p>
+        <div class="footer-citizen"><span class="dot"></span>Citizen of India · Working in India<span class="dot"></span></div>
+        <p class="footer-credit">Crafted with care by <span class="name">Anubhav Verma</span></p>
+      </div>
+    </footer>
   </section>
 
   <!-- ABOUT -->
@@ -779,18 +301,9 @@ footer {
           <p>A hospitality professional with over eight years of hands-on experience across India's leading hotel, hostel, and managed-living brands. I've grown through every rung of the ladder — from front-office operations to general management — and I lead teams with empathy, discipline, and a genuine love for people.</p>
           <p>Currently exploring new opportunities where I can bring operational excellence, team leadership, and a warm, human-first approach to guest experience.</p>
           <div class="contact-pills">
-            <a href="mailto:deepanshiyerma133@gmail.com">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-              Email
-            </a>
-            <a href="tel:+917827426631">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-              Phone
-            </a>
-            <a href="https://www.instagram.com/deepanshi.diaries" target="_blank" rel="noopener">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-              Instagram
-            </a>
+            <a href="mailto:deepanshiyerma133@gmail.com"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Email</a>
+            <a href="tel:+917827426631"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Phone</a>
+            <a href="https://www.instagram.com/deepanshi.diaries" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>Instagram</a>
           </div>
         </div>
       </div>
@@ -803,43 +316,12 @@ footer {
       <div class="page-label reveal">02 — Experience</div>
       <h1 class="page-title reveal">A career built <em>step by step.</em></h1>
       <div class="exp-list">
-        <div class="exp-item reveal">
-          <div class="exp-year">2021 — Present</div>
-          <div class="exp-role">General Manager</div>
-          <div class="exp-company">Stanza Living</div>
-          <p class="exp-desc">Leading end-to-end operations across a managed-living property — team management, P&amp;L ownership, resident experience, and process excellence.</p>
-        </div>
-        <div class="exp-item reveal">
-          <div class="exp-year">1 Year</div>
-          <div class="exp-role">Branch Manager</div>
-          <div class="exp-company">AAddress.co</div>
-          <p class="exp-desc">Owned branch operations, client relationships, and workspace solutions — driving growth in a competitive business-address market.</p>
-        </div>
-        <div class="exp-item reveal">
-          <div class="exp-year">2 Years</div>
-          <div class="exp-role">Branch Manager</div>
-          <div class="exp-company">goStops Hospitality</div>
-          <p class="exp-desc">Managed a flagship hostel property, led a young team, and delivered record guest satisfaction.</p>
-          <span class="exp-flag">★ Best Branch Manager — 2 Years Running</span>
-        </div>
-        <div class="exp-item reveal">
-          <div class="exp-year">1 Year 6 Months</div>
-          <div class="exp-role">Senior Guest Relation Executive</div>
-          <div class="exp-company">OYO Hotels &amp; Homes</div>
-          <p class="exp-desc">Front-office leadership, guest escalations, and consistent service-quality scores across multiple properties.</p>
-        </div>
-        <div class="exp-item reveal">
-          <div class="exp-year">2 Years</div>
-          <div class="exp-role">Front Office Executive</div>
-          <div class="exp-company">Treebo Hotel Four Sight, Gurgaon</div>
-          <p class="exp-desc">Handled check-ins, check-outs, guest queries, and daily front-desk operations with precision.</p>
-        </div>
-        <div class="exp-item reveal">
-          <div class="exp-year">1 Year + 3 Months Training</div>
-          <div class="exp-role">Front Office Assistant</div>
-          <div class="exp-company">Bhutan Infra Groups — Hotel World Square</div>
-          <p class="exp-desc">Where it all began — front-office training, guest handling, and the foundations of hospitality.</p>
-        </div>
+        <div class="exp-item reveal"><div class="exp-year">2021 — Present</div><div class="exp-role">General Manager</div><div class="exp-company">Stanza Living</div><p class="exp-desc">Leading end-to-end operations across a managed-living property — team management, P&amp;L ownership, resident experience, and process excellence.</p></div>
+        <div class="exp-item reveal"><div class="exp-year">1 Year</div><div class="exp-role">Branch Manager</div><div class="exp-company">AAddress.co</div><p class="exp-desc">Owned branch operations, client relationships, and workspace solutions — driving growth in a competitive business-address market.</p></div>
+        <div class="exp-item reveal"><div class="exp-year">2 Years</div><div class="exp-role">Branch Manager</div><div class="exp-company">goStops Hospitality</div><p class="exp-desc">Managed a flagship hostel property, led a young team, and delivered record guest satisfaction.</p><span class="exp-flag">★ Best Branch Manager — 2 Years Running</span></div>
+        <div class="exp-item reveal"><div class="exp-year">1 Year 6 Months</div><div class="exp-role">Senior Guest Relation Executive</div><div class="exp-company">OYO Hotels &amp; Homes</div><p class="exp-desc">Front-office leadership, guest escalations, and consistent service-quality scores across multiple properties.</p></div>
+        <div class="exp-item reveal"><div class="exp-year">2 Years</div><div class="exp-role">Front Office Executive</div><div class="exp-company">Treebo Hotel Four Sight, Gurgaon</div><p class="exp-desc">Handled check-ins, check-outs, guest queries, and daily front-desk operations with precision.</p></div>
+        <div class="exp-item reveal"><div class="exp-year">1 Year + 3 Months Training</div><div class="exp-role">Front Office Assistant</div><div class="exp-company">Bhutan Infra Groups — Hotel World Square</div><p class="exp-desc">Where it all began — front-office training, guest handling, and the foundations of hospitality.</p></div>
       </div>
     </div>
   </section>
@@ -850,80 +332,35 @@ footer {
       <div class="page-label reveal">03 — Skills</div>
       <h1 class="page-title reveal">What I <em>bring to the table.</em></h1>
       <div class="skills-grid">
-        <div class="skill-card reveal">
-          <h3><span class="num">01</span> Hotel Software</h3>
-          <div class="skill-tags"><span>IDS</span><span>Hotelogix</span><span>eZee Absolute</span><span>Posist</span></div>
-        </div>
-        <div class="skill-card reveal">
-          <h3><span class="num">02</span> Computer</h3>
-          <div class="skill-tags"><span>Word</span><span>Excel</span><span>PowerPoint</span><span>Outlook</span><span>Windows</span></div>
-        </div>
-        <div class="skill-card reveal">
-          <h3><span class="num">03</span> Core Strengths</h3>
-          <div class="skill-tags"><span>Interpersonal Skills</span><span>Active Listening</span><span>Hard Working</span><span>Team Player</span><span>Leadership</span></div>
-        </div>
+        <div class="skill-card reveal"><h3><span class="num">01</span> Hotel Software</h3><div class="skill-tags"><span>IDS</span><span>Hotelogix</span><span>eZee Absolute</span><span>Posist</span></div></div>
+        <div class="skill-card reveal"><h3><span class="num">02</span> Computer</h3><div class="skill-tags"><span>Word</span><span>Excel</span><span>PowerPoint</span><span>Outlook</span><span>Windows</span></div></div>
+        <div class="skill-card reveal"><h3><span class="num">03</span> Core Strengths</h3><div class="skill-tags"><span>Interpersonal Skills</span><span>Active Listening</span><span>Hard Working</span><span>Team Player</span><span>Leadership</span></div></div>
       </div>
-
-      <div class="page-label reveal" style="margin-top: 3.5rem;">04 — Education</div>
+      <div class="page-label reveal" style="margin-top:3.5rem;">04 — Education</div>
       <div class="exp-list">
-        <div class="exp-item reveal">
-          <div class="exp-year">Diploma</div>
-          <div class="exp-role">Aviation, Hospitality &amp; Travel Management</div>
-          <div class="exp-company">Frankfinn Institute of Air Hostess Training</div>
-        </div>
-        <div class="exp-item reveal">
-          <div class="exp-year">2015</div>
-          <div class="exp-role">Class 12th — U.P. Board</div>
-        </div>
-        <div class="exp-item reveal">
-          <div class="exp-year">2013</div>
-          <div class="exp-role">Class 10th — U.P. Board</div>
-        </div>
+        <div class="exp-item reveal"><div class="exp-year">Diploma</div><div class="exp-role">Aviation, Hospitality &amp; Travel Management</div><div class="exp-company">Frankfinn Institute of Air Hostess Training</div></div>
+        <div class="exp-item reveal"><div class="exp-year">2015</div><div class="exp-role">Class 12th — U.P. Board</div></div>
+        <div class="exp-item reveal"><div class="exp-year">2013</div><div class="exp-role">Class 10th — U.P. Board</div></div>
       </div>
-
-      <div class="page-label reveal" style="margin-top: 3.5rem;">05 — Vision</div>
-      <p class="contact-hero reveal" style="max-width: 22ch;">One day, I'll own and run a hospitality property <em>of my own.</em></p>
+      <div class="page-label reveal" style="margin-top:3.5rem;">05 — Vision</div>
+      <p class="contact-hero reveal" style="max-width:22ch;">One day, I'll own and run a hospitality property <em>of my own.</em></p>
     </div>
   </section>
 
-  <!-- JOURNEY -->
+  <!-- JOURNEY GRID -->
   <section class="page" id="page-journey">
     <div class="page-inner">
       <div class="page-label reveal">06 — Journey in Frames</div>
       <h1 class="page-title reveal">Moments from <em>the road so far.</em></h1>
       <div class="journey-grid" id="journeyGrid">
-        <div class="journey-card reveal" data-i="0">
-          <img src="images/img1.jpg" alt="goStops" loading="lazy" />
-          <div class="jc-overlay"><div class="jc-label">goStops · Branch Manager</div><div class="jc-title">Best Branch Manager, two years running.</div></div>
-        </div>
-        <div class="journey-card reveal" data-i="1">
-          <img src="images/img2.jpg" alt="Stanza" loading="lazy" />
-          <div class="jc-overlay"><div class="jc-label">Stanza Living · General Manager</div><div class="jc-title">Leading operations, teams, and experience.</div></div>
-        </div>
-        <div class="journey-card reveal" data-i="2">
-          <img src="images/img3.jpg" alt="AAddress" loading="lazy" />
-          <div class="jc-overlay"><div class="jc-label">AAddress.co · Branch Manager</div><div class="jc-title">Client relationships, workspace solutions.</div></div>
-        </div>
-        <div class="journey-card reveal" data-i="3">
-          <img src="images/img4.jpg" alt="Frankfinn" loading="lazy" />
-          <div class="jc-overlay"><div class="jc-label">Frankfinn · Diploma</div><div class="jc-title">Where hospitality became a calling.</div></div>
-        </div>
-        <div class="journey-card reveal" data-i="4">
-          <img src="images/img5.jpg" alt="Mall Ops" loading="lazy" />
-          <div class="jc-overlay"><div class="jc-label">Guest Experience</div><div class="jc-title">Operations beyond the property.</div></div>
-        </div>
-        <div class="journey-card reveal" data-i="5">
-          <img src="images/img6.jpg" alt="GM Desk" loading="lazy" />
-          <div class="jc-overlay"><div class="jc-label">The GM's Desk</div><div class="jc-title">Strategy, ownership, and leadership.</div></div>
-        </div>
-        <div class="journey-card reveal" data-i="6">
-          <img src="images/img7.jpg" alt="Team" loading="lazy" />
-          <div class="jc-overlay"><div class="jc-label">Team Leadership</div><div class="jc-title">Training, mentoring, and building teams.</div></div>
-        </div>
-        <div class="journey-card reveal" data-i="7">
-          <img src="images/img8.jpg" alt="Client" loading="lazy" />
-          <div class="jc-overlay"><div class="jc-label">Client Partnership</div><div class="jc-title">Long-term relationships, real results.</div></div>
-        </div>
+        <div class="journey-card reveal" data-i="0"><img src="images/img1.jpg" alt="goStops" loading="lazy"><div class="jc-overlay"><div class="jc-label">goStops · Branch Manager</div><div class="jc-title">Best Branch Manager, two years running.</div></div></div>
+        <div class="journey-card reveal" data-i="1"><img src="images/img4.jpg" alt="Frankfinn" loading="lazy"><div class="jc-overlay"><div class="jc-label">Frankfinn · Diploma</div><div class="jc-title">Where hospitality became a calling.</div></div></div>
+        <div class="journey-card reveal" data-i="2"><img src="images/img3.jpg" alt="AAddress" loading="lazy"><div class="jc-overlay"><div class="jc-label">AAddress.co · Branch Manager</div><div class="jc-title">Client relationships, workspace solutions.</div></div></div>
+        <div class="journey-card reveal" data-i="3"><img src="images/img2.jpg" alt="Stanza" loading="lazy"><div class="jc-overlay"><div class="jc-label">Stanza Living · General Manager</div><div class="jc-title">Leading operations, teams, and experience.</div></div></div>
+        <div class="journey-card reveal" data-i="4"><img src="images/img6.jpg" alt="GM Desk" loading="lazy"><div class="jc-overlay"><div class="jc-label">The GM's Desk</div><div class="jc-title">Strategy, ownership, and leadership.</div></div></div>
+        <div class="journey-card reveal" data-i="5"><img src="images/img5.jpg" alt="Mall" loading="lazy"><div class="jc-overlay"><div class="jc-label">Guest Experience</div><div class="jc-title">Operations beyond the property.</div></div></div>
+        <div class="journey-card reveal" data-i="6"><img src="images/img7.jpg" alt="Team" loading="lazy"><div class="jc-overlay"><div class="jc-label">Team Leadership</div><div class="jc-title">Training, mentoring, and building teams.</div></div></div>
+        <div class="journey-card reveal" data-i="7"><img src="images/img8.jpg" alt="Client" loading="lazy"><div class="jc-overlay"><div class="jc-label">Client Partnership</div><div class="jc-title">Long-term relationships, real results.</div></div></div>
       </div>
     </div>
   </section>
@@ -935,245 +372,147 @@ footer {
       <h1 class="contact-hero reveal">Let's build something <em>remarkable together.</em></h1>
       <p class="contact-intro reveal">Whether it's a conversation about an opportunity, a collaboration, or just a hello — my inbox is always open.</p>
       <div class="contact-cards">
-        <a class="contact-card reveal" href="https://wa.me/917827426631?text=Hi%20Deepanshi%2C%20I%20came%20across%20your%20portfolio." target="_blank" rel="noopener">
-          <div class="cc-left"><span class="cc-label">WhatsApp</span><span class="cc-value">+91 78274 26631</span></div>
-          <div class="cc-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-        </a>
-        <a class="contact-card reveal" href="mailto:deepanshiyerma133@gmail.com?subject=Opportunity%20for%20Deepanshi">
-          <div class="cc-left"><span class="cc-label">Email</span><span class="cc-value">deepanshiyerma133@gmail.com</span></div>
-          <div class="cc-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-        </a>
-        <a class="contact-card reveal" href="tel:+917827426631">
-          <div class="cc-left"><span class="cc-label">Call</span><span class="cc-value">+91 78274 26631</span></div>
-          <div class="cc-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-        </a>
-        <a class="contact-card reveal" href="https://www.instagram.com/deepanshi.diaries" target="_blank" rel="noopener">
-          <div class="cc-left"><span class="cc-label">Instagram</span><span class="cc-value">@deepanshi.diaries</span></div>
-          <div class="cc-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
-        </a>
+        <a class="contact-card reveal" href="https://wa.me/917827426631?text=Hi%20Deepanshi%2C%20I%20came%20across%20your%20portfolio." target="_blank" rel="noopener"><div class="cc-left"><span class="cc-label">WhatsApp</span><span class="cc-value">+91 78274 26631</span></div><div class="cc-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></a>
+        <a class="contact-card reveal" href="mailto:deepanshiyerma133@gmail.com"><div class="cc-left"><span class="cc-label">Email</span><span class="cc-value">deepanshiyerma133@gmail.com</span></div><div class="cc-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></a>
+        <a class="contact-card reveal" href="tel:+917827426631"><div class="cc-left"><span class="cc-label">Call</span><span class="cc-value">+91 78274 26631</span></div><div class="cc-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></a>
+        <a class="contact-card reveal" href="https://www.instagram.com/deepanshi.diaries" target="_blank" rel="noopener"><div class="cc-left"><span class="cc-label">Instagram</span><span class="cc-value">@deepanshi.diaries</span></div><div class="cc-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div></a>
       </div>
     </div>
   </section>
 
 </main>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <p class="footer-line">"Hospitality is not a job — it's the quiet art of making people feel at home."</p>
-    <div class="footer-citizen"><span class="dot"></span>Citizen of India · Working in India<span class="dot"></span></div>
-    <p class="footer-credit">Crafted with care by <span class="name">Anubhav Verma</span></p>
-  </div>
-</footer>
-
 <script>
-/* ============ LOADER ============ */
-(function() {
-  const num = document.getElementById('loaderNum');
-  const bar = document.getElementById('loaderBar');
-  const status = document.getElementById('loaderStatus');
-  const loader = document.getElementById('loader');
-  const messages = ['Initializing', 'Loading modules', 'Securing connection', 'Preparing experience', 'Welcome'];
-  let p = 0;
-  const tick = setInterval(() => {
-    p += Math.random() * 5 + 1.5;
-    if (p >= 100) { p = 100; clearInterval(tick); setTimeout(finish, 500); }
-    num.textContent = Math.floor(p);
-    bar.style.setProperty('--p', p / 100);
-    status.textContent = messages[Math.min(Math.floor(p / 22), messages.length - 1)];
-  }, 70);
-  function finish() {
-    loader.classList.add('hide');
-    setTimeout(() => {
-      loader.remove();
-      revealAll();
-      initHomeAnim();
-    }, 700);
-  }
+/* LOADER */
+(function(){
+  const num=document.getElementById('loaderNum'),bar=document.getElementById('loaderBar'),status=document.getElementById('loaderStatus'),loader=document.getElementById('loader');
+  const msgs=['Initializing','Loading modules','Securing connection','Preparing experience','Welcome'];
+  let p=0;
+  const t=setInterval(()=>{
+    p+=Math.random()*5+1.5;
+    if(p>=100){p=100;clearInterval(t);setTimeout(finish,500);}
+    num.textContent=Math.floor(p);
+    bar.style.setProperty('--p',p/100);
+    status.textContent=msgs[Math.min(Math.floor(p/22),msgs.length-1)];
+  },70);
+  function finish(){loader.classList.add('hide');setTimeout(()=>{loader.remove();revealAll();initCine();},700);}
 })();
 
-/* ============ PAGE ROUTING ============ */
-(function() {
-  const pages = document.querySelectorAll('.page');
-  const navLinks = document.querySelectorAll('[data-page]');
-  const mobileMenu = document.getElementById('mobileMenu');
-  const menuBtn = document.getElementById('menuBtn');
-  const backdrop = document.getElementById('menuBackdrop');
-  const nav = document.getElementById('nav');
-
-  function closeMenu() {
-    mobileMenu.classList.remove('open');
-    menuBtn.classList.remove('open');
-    backdrop.classList.remove('open');
-    menuBtn.setAttribute('aria-expanded', 'false');
-  }
-  function openMenu() {
-    mobileMenu.classList.add('open');
-    menuBtn.classList.add('open');
-    backdrop.classList.add('open');
-    menuBtn.setAttribute('aria-expanded', 'true');
-  }
-
-  window.goTo = function(page) {
-    pages.forEach(p => p.classList.toggle('active', p.id === 'page-' + page));
-    document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(a => {
-      a.classList.toggle('active', a.dataset.page === page);
-    });
-    window.scrollTo({ top: 0, behavior: 'instant' });
-    history.replaceState(null, '', '#' + page);
-    setTimeout(() => {
-      revealAll();
-      if (page === 'home') initHomeAnim();
-    }, 100);
+/* ROUTING */
+(function(){
+  const pages=document.querySelectorAll('.page');
+  const navLinks=document.querySelectorAll('[data-page]');
+  const mm=document.getElementById('mobileMenu'),mb=document.getElementById('menuBtn'),bd=document.getElementById('menuBackdrop'),nav=document.getElementById('nav');
+  function closeMenu(){mm.classList.remove('open');mb.classList.remove('open');bd.classList.remove('open');}
+  function openMenu(){mm.classList.add('open');mb.classList.add('open');bd.classList.add('open');}
+  window.goTo=function(page){
+    pages.forEach(p=>p.classList.toggle('active',p.id==='page-'+page));
+    document.querySelectorAll('.nav-links a,.mobile-menu a').forEach(a=>a.classList.toggle('active',a.dataset.page===page));
+    window.scrollTo({top:0,behavior:'instant'});
+    history.replaceState(null,'','#'+page);
+    setTimeout(()=>{revealAll();if(page==='home')initCine();},100);
   };
-
-  navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const page = link.dataset.page;
-      if (!page) return;
-      window.goTo(page);
-      closeMenu();
-    });
-  });
-
-  menuBtn.addEventListener('click', () => {
-    if (mobileMenu.classList.contains('open')) closeMenu();
-    else openMenu();
-  });
-  backdrop.addEventListener('click', closeMenu);
-
-  const hash = (location.hash || '#home').replace('#', '');
-  if (document.getElementById('page-' + hash)) window.goTo(hash);
-  else window.goTo('home');
-
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 10);
-  }, { passive: true });
+  navLinks.forEach(l=>l.addEventListener('click',e=>{e.preventDefault();const p=l.dataset.page;if(!p)return;goTo(p);closeMenu();}));
+  mb.addEventListener('click',()=>{mm.classList.contains('open')?closeMenu():openMenu();});
+  bd.addEventListener('click',closeMenu);
+  const hash=(location.hash||'#home').replace('#','');
+  if(document.getElementById('page-'+hash))goTo(hash);else goTo('home');
+  window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>10);},{passive:true});
 })();
 
-/* ============ REVEAL ============ */
-function revealAll() {
-  const els = document.querySelectorAll('.page.active .reveal');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('in'), i * 50);
-        io.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-  els.forEach(el => { el.classList.remove('in'); io.observe(el); });
+/* REVEAL */
+function revealAll(){
+  const els=document.querySelectorAll('.page.active .reveal');
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach((en,i)=>{if(en.isIntersecting){setTimeout(()=>en.target.classList.add('in'),i*50);io.unobserve(en.target);}});
+  },{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+  els.forEach(el=>{el.classList.remove('in');io.observe(el);});
 }
 
-/* ============ HOME SCROLL ANIMATION ============ */
-let homeInit = false;
-function initHomeAnim() {
-  const stage = document.getElementById('homeStage');
-  if (!stage) return;
-  if (window.ScrollTrigger) ScrollTrigger.getAll().forEach(t => t.kill());
+/* CINEMATIC SCATTER */
+function initCine(){
+  const cine=document.getElementById('cine');
+  if(!cine||!window.ScrollTrigger)return;
+  ScrollTrigger.getAll().forEach(t=>t.kill());
+  const photos=document.querySelectorAll('.cine-photo');
+  const title=document.getElementById('cineTitle');
+  const isSm=window.innerWidth<640;
 
-  const photos = document.querySelectorAll('.hp');
-  const center = document.getElementById('homeCenter');
-
-  const isSmall = window.innerWidth < 640;
-  // Scatter positions — spread around the viewport (vw / vh)
-  const scatter = [
-    { x: -34, y: -34, r: -14, s: 1.15 },
-    { x:  34, y: -34, r:  14, s: 1.15 },
-    { x: -40, y:  -6, r:  -6, s: 1.0 },
-    { x:  40, y:  -6, r:   6, s: 1.0 },
-    { x: -40, y:  20, r:   5, s: 1.0 },
-    { x:  40, y:  20, r:  -5, s: 1.0 },
-    { x: -34, y:  42, r:  10, s: 1.15 },
-    { x:  34, y:  42, r: -10, s: 1.15 },
+  const scatter=isSm?[
+    {x:-30,y:-38,r:-14,s:.95},
+    {x: 30,y:-38,r: 14,s:.95},
+    {x:-34,y:-14,r: -6,s:.85},
+    {x:  0,y:-14,r:  2,s:.9},
+    {x: 34,y:-14,r:  6,s:.85},
+    {x:-34,y: 18,r:  5,s:.85},
+    {x:  0,y: 18,r: -2,s:.9},
+    {x: 34,y: 18,r: -5,s:.85},
+  ]:[
+    {x:-36,y:-34,r:-10,s:1.05},
+    {x: 36,y:-34,r: 10,s:1.05},
+    {x:-40,y: -6,r: -5,s:1.0},
+    {x:  0,y: -6,r:  2,s:1.05},
+    {x: 40,y: -6,r:  5,s:1.0},
+    {x:-40,y: 26,r:  6,s:1.0},
+    {x:  0,y: 26,r: -2,s:1.05},
+    {x: 40,y: 26,r: -6,s:1.0},
   ];
-  const scatterSm = [
-    { x: -28, y: -38, r: -12, s: 1.1 },
-    { x:  28, y: -38, r:  12, s: 1.1 },
-    { x: -34, y: -12, r:  -5, s: .95 },
-    { x:  34, y: -12, r:   5, s: .95 },
-    { x: -34, y:  18, r:   5, s: .95 },
-    { x:  34, y:  18, r:  -5, s: .95 },
-    { x: -28, y:  40, r:   8, s: 1.1 },
-    { x:  28, y:  40, r:  -8, s: 1.1 },
-  ];
-  const targets = isSmall ? scatterSm : scatter;
 
-  // Ensure clean initial state
-  gsap.set(photos, { x: 0, y: 0, rotation: 0, scale: 1, opacity: 1 });
+  // initial state
+  photos.forEach(p=>{
+    gsap.set(p,{x:0,y:0,rotation:0,scale:0.35,opacity:0});
+  });
 
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: stage,
-      start: 'top top',
-      end: 'bottom bottom',
-      scrub: 1,
+  const tl=gsap.timeline({
+    scrollTrigger:{
+      trigger:cine,
+      start:'top top',
+      end:'bottom bottom',
+      scrub:1,
     }
   });
 
-  // Phase 1: name zooms up modestly (max ~2x, no pixelation)
-  tl.to(center, {
-    scale: 1.35,
-    y: '-4vh',
-    duration: 0.4,
-    ease: 'power2.out',
-  }, 0);
+  // Title visible at start
+  gsap.set(title,{opacity:1,y:0});
 
-  // Phase 2: photos spread outward smoothly
-  photos.forEach((photo, i) => {
-    const t = targets[i];
-    tl.to(photo, {
-      x: t.x + 'vw',
-      y: t.y + 'vh',
-      rotation: t.r,
-      scale: t.s,
-      duration: 0.85,
-      ease: 'power2.out',
-    }, 0.05 + i * 0.015);
+  // Photos reveal one by one and scatter out
+  photos.forEach((ph,i)=>{
+    const t=scatter[i];
+    tl.to(ph,{opacity:1,duration:.15,ease:'power1.out'},i*.02)
+      .to(ph,{
+        x:t.x+'vw',
+        y:t.y+'vh',
+        rotation:t.r,
+        scale:t.s,
+        duration:1,
+        ease:'power3.out',
+      }, i*.02);
   });
 
-  // Phase 3: center fades out at the end
-  tl.to(center, {
-    opacity: 0,
-    scale: 1.55,
-    duration: 0.35,
-    ease: 'power2.in',
-  }, 0.7);
+  // Title fades out mid-scroll
+  tl.to(title,{opacity:0,y:-30,duration:.4,ease:'power2.in'},0.4);
 
-  // Tap photo → journey
-  photos.forEach((photo) => {
-    photo.addEventListener('click', () => {
-      const i = photo.dataset.i;
+  // Click → journey
+  photos.forEach(ph=>{
+    ph.addEventListener('click',()=>{
+      const i=ph.dataset.i;
       window.goTo('journey');
-      setTimeout(() => {
-        const target = document.querySelector(`.journey-card[data-i="${i}"]`);
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          target.classList.add('highlight');
-          setTimeout(() => target.classList.remove('highlight'), 2200);
+      setTimeout(()=>{
+        const tgt=document.querySelector(`.journey-card[data-i="${i}"]`);
+        if(tgt){
+          tgt.scrollIntoView({behavior:'smooth',block:'center'});
+          tgt.classList.add('highlight');
+          setTimeout(()=>tgt.classList.remove('highlight'),2200);
         }
-      }, 500);
+      },500);
     });
   });
 
-  setTimeout(() => ScrollTrigger.refresh(), 300);
+  setTimeout(()=>ScrollTrigger.refresh(),300);
 }
 
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    if (window.ScrollTrigger) initHomeAnim();
-  }, 100);
-});
-
-/* ESC to close */
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    document.getElementById('mobileMenu').classList.remove('open');
-    document.getElementById('menuBtn').classList.remove('open');
-    document.getElementById('menuBackdrop').classList.remove('open');
-  }
-});
+window.addEventListener('load',()=>{setTimeout(()=>{if(window.ScrollTrigger)initCine();},200);});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.getElementById('mobileMenu').classList.remove('open');document.getElementById('menuBtn').classList.remove('open');document.getElementById('menuBackdrop').classList.remove('open');}});
 </script>
 </body>
 </html>
